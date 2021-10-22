@@ -12,8 +12,8 @@ export class UserService{
         this.db = new Nedb()
      }
     
-    create(user: Users) {
-        return this.createUser(user)
+    async create(user: Users) {
+        return await this.createUser(user)
     }
 
     private async createUser(user) {

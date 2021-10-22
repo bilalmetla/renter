@@ -1,5 +1,5 @@
 POST http://localhost:3000/verifications/user HTTP/1.1
-content-type: application/json
+content-type: application/json 
 
 {
     "mobileNumber": "9898"
@@ -11,8 +11,8 @@ POST http://localhost:3000/verifications/otp HTTP/1.1
 content-type: application/json
 
 {
-    "mobileNumber": 9898,
-    "otpCode": 700110
+    "mobileNumber": "9898",
+    "otpCode": 906865
 }
 
 ###
@@ -22,8 +22,41 @@ content-type: application/json
 
 {
     "name": "bilal Ahmad",
-    "mobileNumber": 34343,
-    "City": "Isb",
+    "mobileNumber": "9898",
+    "city": "Isb",
     "address": "G 11 2",
     "location": []
 }
+
+###
+
+POST http://localhost:3000/products HTTP/1.1
+content-type: application/json
+
+{
+    "title": "House 1",
+    "streetNo": 1,
+    "houseNo": 55,
+    "rentAmount": 40000,
+    "bedRooms": 5,
+    "baths": 3,
+    "area": 5,
+    "areaUnits": "Marla",
+    "portionType": "Full",
+    "productType": "House",
+    "description":"Its very nice portion for rent",
+    "location":[],
+    "pics":[],
+    "userId":"IQPZHDQdxyfMbmpY",
+    "city":"islamabad"
+}
+
+###
+
+GET http://localhost:3000/products HTTP/1.1
+content-type: application/json 
+
+###
+
+GET http://localhost:3000/products/y9h86TLHA0iR5cGJ HTTP/1.1
+content-type: application/json 

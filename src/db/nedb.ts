@@ -47,7 +47,7 @@ export class Nedb {
 
     async findOne(collection: string, where: Object): Promise<any> {
         return new Promise((resolve, reject) => {
-            return this.db[collection].findOne(where, (err: Error, docs:any[]) => err ? reject(err) : resolve(docs))
+            return this.db[collection].findOne(where, (err: Error, docs:any) => err ? reject(err) : resolve(docs))
         })
     }
 }

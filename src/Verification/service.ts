@@ -14,12 +14,12 @@ export class VerificationsService  {
         this.db = new Nedb()
     }
 
-    createVerification ({ mobileNumber }: Verifications) {
-        return this.createActivation(mobileNumber)
+    async createVerification ({ mobileNumber }: Verifications) {
+        return await this.createActivation(mobileNumber)
     }
 
-    verifyMobileNumber({ mobileNumber, otpCode }: Verifications) {
-        return this.getVerification({ mobileNumber, otpCode })
+    async verifyMobileNumber({ mobileNumber, otpCode }: Verifications) {
+        return await this.getVerification({ mobileNumber, otpCode })
     }
 
     private async createActivation(mobileNumber) { 

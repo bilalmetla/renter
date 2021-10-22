@@ -3,22 +3,39 @@ import {
     IsString, IsArray
 } from 'class-validator';
 
-export enum portionsTypes {
-    FIRSTFLOWER,
-    SECONDFLOWER,
-    GROUND,
-    BASEMENT,
-    OTHER
+export enum portionTypes {
+    FIRSTFLOWER='First Flower',
+    SECONDFLOWER='Second Flower',
+    GROUND='Ground',
+    BASEMENT = 'Basement',
+    FULL='Full',
+    OTHER='Other'
+}
+
+export enum ProductTypes {
+    HOUSE='House',
+    OFFICE='Office',
+    SHOP='Shop',
+    ROOM='Room',
+
+}
+
+export enum AreaUnits {
+    MARLA = 'Marla'
 }
 
 export class Products {
 
     @IsNotEmpty()
-    @IsString()
+    @IsInt()
     streetNo: string;
     
     @IsNotEmpty()
     @IsString()
+    city: string;
+    
+    @IsNotEmpty()
+    @IsInt()
     houseNo: string;
 
     @IsNotEmpty()
@@ -39,15 +56,19 @@ export class Products {
     
     @IsNotEmpty()
     @IsString()
-    areaUnits: string;
+    areaUnits: AreaUnits;
 
     @IsNotEmpty()
     @IsString()
-    portionType: portionsTypes;
+    portionType: portionTypes;
 
     @IsNotEmpty()
     @IsString()
     title: string;
+    
+    @IsNotEmpty()
+    @IsString()
+    productType: ProductTypes;
 
     @IsNotEmpty()
     @IsString()
@@ -57,5 +78,9 @@ export class Products {
     location?: number;
 
     @IsArray()
-    pics: string;
+    pics?: string;
+
+    @IsNotEmpty()
+    @IsString()
+    userId: string;
 }

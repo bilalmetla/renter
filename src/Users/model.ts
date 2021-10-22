@@ -16,7 +16,7 @@ export class Users {
 
     @IsNotEmpty()
     @IsString()
-    City: string;
+    city: string;
 
     @IsNotEmpty()
     @IsString()

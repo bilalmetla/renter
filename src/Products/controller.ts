@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from "@nestjs/common";
+import { Controller, Post, Body, Get, Param } from "@nestjs/common";
 import { ProductService } from "./service";
 import { Products } from "./model";
 
@@ -17,6 +17,37 @@ export class ProductController {
 
             console.log('request: ', body)
             const resp = await this.productService.create(body);
+            console.log('response: ', resp)
+            return resp;
+            
+        } catch (ex) {
+
+            console.log(ex.stack)
+            return {resultCode: 500}
+        }
+    }
+
+    @Get()
+    async getProduct() {
+        try {
+            const resp = await this.productService.getList();
+            console.log('response: ', resp)
+            return resp;
+            
+        } catch (ex) {
+
+            console.log(ex.stack)
+            return {resultCode: 500}
+        }
+    }
+
+    @Get(':id')
+    async getProductById(
+        @Param() params
+    ) {
+        try {
+            console.log('request: ', params)
+        const resp = await this.productService.getById(params);
             console.log('response: ', resp)
             return resp;
             
