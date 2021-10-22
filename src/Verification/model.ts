@@ -5,7 +5,7 @@ export class Verifications  {
     
     @IsNotEmpty()
     @IsInt()
-    mobileNumber: number;
+    mobileNumber: string;
 
 
     otpCode?: number;

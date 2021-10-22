@@ -1,5 +1,6 @@
-import { Controller, Post } from "@nestjs/common";
+import { Controller, Post, Body } from "@nestjs/common";
 import { ProductService } from "./service";
+import { Products } from "./model";
 
 
 @Controller('products')
@@ -9,10 +10,15 @@ export class ProductController {
 
 
     @Post()
-    async postProduct() {
+    async postProduct(
+        @Body() body: Products
+    ) {
         try {
 
-
+            console.log('request: ', body)
+            const resp = await this.productService.create(body);
+            console.log('response: ', resp)
+            return resp;
             
         } catch (ex) {
 
