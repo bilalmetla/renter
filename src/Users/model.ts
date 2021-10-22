@@ -11,7 +11,7 @@ export class Users {
     name: string;
 
     @IsNotEmpty()
-    @IsInt()
+    @IsString()
     mobileNumber: string;
 
     @IsNotEmpty()

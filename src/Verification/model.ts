@@ -1,10 +1,10 @@
 
-import { IsInt, IsEmpty, IsNotEmpty } from 'class-validator';
+import { IsString, IsEmpty, IsNotEmpty } from 'class-validator';
 
 export class Verifications  {
     
     @IsNotEmpty()
-    @IsInt()
+    @IsString()
     mobileNumber: string;
 
 

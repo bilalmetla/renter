@@ -2,7 +2,7 @@ POST http://localhost:3000/verifications/user HTTP/1.1
 content-type: application/json
 
 {
-    "mobileNumber": 9898
+    "mobileNumber": "9898"
 }
 
 ###
