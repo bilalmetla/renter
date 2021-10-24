@@ -38,6 +38,14 @@ export class Nedb {
             return this.db[collection].insert(records, (err: Error, docs:any) => err ? reject(err) : resolve(docs))
         })
     }
+   
+    async update(collection: string, records: any, where: any): Promise<any>{
+        return new Promise((resolve, reject) => {
+            return this.db[collection]
+                .update(where, { $set: records }, {},
+                    (err: Error, docs: any) => err ? reject(err) : resolve(docs))
+        })
+    }
 
     async find(collection: string, where: Object): Promise<any> {
         return new Promise((resolve, reject) => {

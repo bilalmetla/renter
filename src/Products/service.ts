@@ -17,6 +17,10 @@ export class ProductService{
     async create(product: Products) {
         return await this.createProduct(product)
     }
+   
+    async update(product: Products, {productId}) {
+        return await this.updateProduct(product, {productId})
+    }
     async getList() {
         return await this.getListProduct()
     }
@@ -26,6 +30,11 @@ export class ProductService{
 
     private async createProduct(data) {
         const record = await this.db.insert(Collections.PRODUCTS, data);
+        return new Responses().get(Response.OK, Response.MESSAGE, record)
+    }
+    
+    private async updateProduct(data, {productId}) {
+        const record = await this.db.update(Collections.PRODUCTS, data, {_id: productId});
         return new Responses().get(Response.OK, Response.MESSAGE, record)
     }
     

@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param } from "@nestjs/common";
+import { Controller, Post, Body, Get, Put, Param } from "@nestjs/common";
 import { ProductService } from "./service";
 import { Products } from "./model";
 
@@ -26,6 +26,26 @@ export class ProductController {
             return {resultCode: 500}
         }
     }
+
+    @Put(':productId')
+    async putProduct(
+        @Body() body: Products,
+        @Param() params
+    ) {
+        try {
+
+            console.log('request: ', body)
+            const resp = await this.productService.update(body, params);
+            console.log('response: ', resp)
+            return resp;
+            
+        } catch (ex) {
+
+            console.log(ex.stack)
+            return {resultCode: 500}
+        }
+    }
+
 
     @Get()
     async getProduct() {

@@ -53,6 +53,28 @@ content-type: application/json
 
 ###
 
+PUT http://localhost:3000/products/y9h86TLHA0iR5cGJ HTTP/1.1
+content-type: application/json
+
+{
+    "title": "House 1",
+    "streetNo": 1,
+    "houseNo": 55,
+    "rentAmount": 40000,
+    "bedRooms": 5,
+    "baths": 3,
+    "area": 5,
+    "areaUnits": "Marla",
+    "portionType": "Full",
+    "productType": "House",
+    "description":"Its very nice portion for rent",
+    "location":[],
+    "pics":[],
+    "city":"islamabad"
+}
+
+###
+
 GET http://localhost:3000/products HTTP/1.1
 content-type: application/json 
 
