@@ -1,6 +1,7 @@
 import {
     IsInt, IsEmpty, IsNotEmpty,
-    IsString, IsArray
+    IsString, IsArray,
+    IsOptional
 } from 'class-validator';
 
 export enum portionTypes {
@@ -74,13 +75,15 @@ export class Products {
     @IsString()
     description: string;
 
+    @IsOptional()
     @IsArray()
     location?: number;
 
+    @IsOptional()
     @IsArray()
     pics?: string;
 
-    @IsNotEmpty()
+    @IsOptional()
     @IsString()
-    userId: string;
+    userId?: string;
 }

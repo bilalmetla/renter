@@ -7,10 +7,9 @@ import { Responses, Response } from "src/Responses";
 @Injectable()
 export class ProductService{
 
-    private db: Nedb;
 
     constructor() {
-        this.db = new Nedb()
+       
     }
     
 
@@ -29,22 +28,28 @@ export class ProductService{
     }
 
     private async createProduct(data) {
-        const record = await this.db.insert(Collections.PRODUCTS, data);
+        const record = await global.db.insert(Collections.PRODUCTS, data);
         return new Responses().get(Response.OK, Response.MESSAGE, record)
     }
     
     private async updateProduct(data, {productId}) {
-        const record = await this.db.update(Collections.PRODUCTS, data, {_id: productId});
+        const record = await global.db.update(Collections.PRODUCTS, data, {_id: productId});
         return new Responses().get(Response.OK, Response.MESSAGE, record)
     }
     
     private async getListProduct() {
-        const record = await this.db.find(Collections.PRODUCTS, {});
-        return new Responses().get(Response.OK, Response.MESSAGE, record)
+        try {
+            let record: Products[] = await global.db.find(Collections.PRODUCTS, {});
+            return record;
+            return new Responses().get(Response.OK, Response.MESSAGE, record)  
+        } catch (ex) {
+            throw ex
+        }
+        
     }
     
     private async getproductById(id) {
-        const record = await this.db.findOne(Collections.PRODUCTS, {_id: id});
+        const record = await global.db.findOne(Collections.PRODUCTS, {_id: id});
         return new Responses().get(Response.OK, Response.MESSAGE, record)
     }
 

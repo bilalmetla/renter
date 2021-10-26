@@ -45,8 +45,6 @@ content-type: application/json
     "portionType": "Full",
     "productType": "House",
     "description":"Its very nice portion for rent",
-    "location":[],
-    "pics":[],
     "userId":"IQPZHDQdxyfMbmpY",
     "city":"islamabad"
 }
@@ -69,7 +67,6 @@ content-type: application/json
     "productType": "House",
     "description":"Its very nice portion for rent",
     "location":[],
-    "pics":[],
     "city":"islamabad"
 }
 

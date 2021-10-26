@@ -6,10 +6,10 @@ import { Responses, Response } from "src/Responses";
 
 @Injectable()
 export class UserService{
-    private db: Nedb;
+
 
     constructor() {
-        this.db = new Nedb()
+ 
      }
     
     async create(user: Users) {
@@ -17,7 +17,7 @@ export class UserService{
     }
 
     private async createUser(user) {
-        const record = await this.db.insert(Collections.USERS, user);
+        const record = await global.db.insert(Collections.USERS, user);
         return new Responses().get(Response.OK, Response.MESSAGE, record)
     }
 }

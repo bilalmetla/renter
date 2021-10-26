@@ -9,15 +9,12 @@ export enum Collections {
 
 export class Nedb {
     private db: any;
-    private userCredientials: NEDB;
-    private sessionToken: NEDB;
     private users: NEDB;
     private activations: NEDB;
     private products: NEDB;
 
     constructor() {
-        // this.userCredientials = new NEDB('./data/userCredientiels.db')
-        // this.sessionToken = new NEDB('./data/sessionToken.db')
+
         this.users = new NEDB('./data/users.db')
         this.activations = new NEDB('./data/activations.db')
         this.products = new NEDB('./data/products.db')
@@ -47,10 +44,33 @@ export class Nedb {
         })
     }
 
-    async find(collection: string, where: Object): Promise<any> {
+    async find(collection: string, where: Object) :Promise<any> {
+        try {
+            console.log('db find method..')
         return new Promise((resolve, reject) => {
-            return this.db[collection].find(where, (err: Error, docs:any[]) => err ? reject(err) : resolve(docs))
+            try {
+                
+                return this.db[collection].find(where, (err, docs: any[]) => {
+                    console.log('db find inside method..')
+                    if (err) {
+                        console.log(err)
+                        return reject(err)
+                    }
+                    console.log('db response success')
+                    return resolve(docs)
+                })
+
+            } catch (ex) {
+                console.log(ex)
+            throw ex
+            }
+            
         })
+        } catch (ex) {
+            console.log(ex)
+            throw ex
+        }
+        
     }
 
     async findOne(collection: string, where: Object): Promise<any> {

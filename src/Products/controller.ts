@@ -50,9 +50,16 @@ export class ProductController {
     @Get()
     async getProduct() {
         try {
-            const resp = await this.productService.getList();
-            console.log('response: ', resp)
-            return resp;
+            console.log('get products..')
+            return await this.productService.getList()
+            return this.productService.getList().then(resp => {
+                console.log('response: ', resp)
+                return resp;
+            }).catch(ex => {
+                console.log(ex.stack)
+                return {resultCode: 500}
+            })
+            
             
         } catch (ex) {
 

@@ -2,6 +2,7 @@ import { NestFactory,  } from '@nestjs/core';
 import { ValidationPipe, ValidationError, BadRequestException } from "@nestjs/common";
 
 import { AppModule } from './app.module';
+import { DB } from "./db";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
@@ -13,6 +14,7 @@ async function bootstrap() {
       return new BadRequestException(validationErrors);
     },
   }));
+  global.db = await new DB().getConnection();
   await app.listen(3000);
 }
 bootstrap();

@@ -8,10 +8,10 @@ import { Responses, Response } from "../Responses";
 @Injectable()
 export class VerificationsService  {
     private activation: Activations = new Activations();
-    private db: Nedb;
+ 
 
     constructor() {
-        this.db = new Nedb()
+
     }
 
     async createVerification ({ mobileNumber }: Verifications) {
@@ -31,7 +31,7 @@ export class VerificationsService  {
         this.activation.expiry = new Date(date.setDate(date.getDate() + 1))
         
         //todo save this record
-        await this.db.insert(Collections.ACTIVATIONS, this.activation);
+        await global.db.insert(Collections.ACTIVATIONS, this.activation);
 
         return new Responses().get(Response.OK, Response.MESSAGE);
     }
@@ -53,11 +53,11 @@ export class VerificationsService  {
                 { smsCode: otpCode },
             ]
         }
-        const activation: Activations[] = await this.db.find(Collections.ACTIVATIONS, where)
+        const activation: Activations[] = await global.db.find(Collections.ACTIVATIONS, where)
         if (!activation || activation.length === 0) { 
             return new Responses().get(Response.ACTIVATION_FAILED, Response.FAILED);
         }
-        let user = await this.db.findOne(Collections.USERS, { mobileNumber });
+        let user = await global.db.findOne(Collections.USERS, { mobileNumber });
         return new Responses().get(Response.OK, Response.MESSAGE, user);
     }
 
